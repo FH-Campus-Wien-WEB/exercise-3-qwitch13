@@ -1,3 +1,4 @@
+// template — builders.js provided by the exercise-3 starter repository
 export class ElementBuilder {
     constructor(tag) {
       this.element = document.createElement(tag);

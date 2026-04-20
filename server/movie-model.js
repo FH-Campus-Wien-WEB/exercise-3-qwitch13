@@ -1,3 +1,4 @@
+// template — movie data provided by the exercise-3 starter repository
 module.exports = {
   tt0084787: {
     imdbID: "tt0084787",

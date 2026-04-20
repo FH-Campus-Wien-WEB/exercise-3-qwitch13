@@ -1,3 +1,4 @@
+// template — edit.js provided by the exercise-3 starter repository
 function setMovie(movie) {
 
   for (const element of document.forms[0].elements) {

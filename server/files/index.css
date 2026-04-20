@@ -1,3 +1,4 @@
+/* template */
 @import url(base.css);
 
 h1 {
@@ -15,11 +16,18 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* changed: added — centers buttons vertically within the nav panel */
 }
 
 /* navigation buttons have full width */
 nav button {
   width: 100%;
+  background-color: #e8e8e8;      /* changed: added — 2match movie card genre */
+  border-radius: 0.75rem;         /* changed: added — 2match movie card genre */
+  border: 0.0625rem solid #ccc;   /* changed: added — 2match movie card genre */
+  padding: 0.25rem 0.625rem;      /* changed: added — 2match movie card genre */
+  font-size: 0.9em;               /* changed: added — 2match movie card genre */
+  cursor: pointer;
 }
 
 /* Remove unnecessary space and bullets from the lists */
@@ -28,50 +36,196 @@ ul {
   margin: 16px;
   list-style-type: none;
 }
+/* END template */
 
-/* Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
+/* START - Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
+@media (min-width: 600px) {
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "h h"
+      "n m"
+      "f f";
+    height: 100vh;
+  }
 
+  header { grid-area: h; }
+  nav    { grid-area: n; height: 100%; } /* changed: added height: 100% — lets justify-content: center push buttons to the vertical middle of the nav panel */
+  main   { grid-area: m; }
+  footer { grid-area: f; }
 
-/* Task 3.1. Make the header element a flex container and center its children
+  main {
+    overflow-y: auto;
+  }
+}
+/* END - Task 2.1 */
+
+/* START - Task 3.1. Make the header element a flex container and center its children
    vertically and horizontally.
  */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* END - Task 3.1 */
 
-
-/* Task 3.2. Make the list items of the unordered list in the nav element a flex container, 
+/* START - Task 3.2. Make the list items of the unordered list in the nav element a flex container,
    use column direction and center the child items
  */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  margin: 0;
+}
+/* END - Task 3.2 */
 
-/* Task 3.3. Make the main element a Flexbox container */
+/* START - Task 3.3. Make the main element a Flexbox container */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  align-content: flex-start;
+  padding: 1rem;
+}
+/* END - Task 3.3 */
 
+/* START - Task 3.4. Make the footer's ul a Flexbox container */
+footer ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* END - Task 3.4 */
 
-/* Task 3.4. Make the footer's ul a Flexbox container */
+/* transferred from exercise-2 */
 
-
-/* From here on styling from exercise 1 */
+/* styles all images — used for the movie poster inside each <figure>. */
 img {
-  border-radius: 12px;
+  border-radius: 0.5rem;  /* changed: was 'border-radius: 12px' */
+  max-width: 100%;        /* changed: added */
+  display: block;         /* changed: added */
+  margin: 0 auto;         /* changed: added */
 }
 
-article {
-  background-color: lightgray;
-  border-radius: 16px;
-  padding: 16px;
-  width: 384px;
-  margin: 8px;
-}
-
-a {
-  color: beige;
-}
-
-span {
-  margin-right: 4px;
-}
-
-.genre {
-  padding: 4px 8px;
-  border: solid black 1px;
-  border-radius: 6px;
-  background-color: darkgray;
+/* styles the movie title headings — each <h2> is created dynamically inside an <article>. */
+h2 {
   font-weight: bold;
+  margin: 0.625rem 0 0.3125rem 0;
+  font-size: 1.4em;
+  display: inline-block;
 }
+
+/* styles the hover effect on movie titles — adds a deeper violet shadow when the user hovers. */
+h2:hover {
+  box-shadow: 0 0.125rem 0.5rem rgba(138, 43, 226, 0.8); /* violet shadow at 80% opacity on hover */
+  border-radius: 0.5rem;
+  background-color: rgba(138, 43, 226, 0.2); /* violet background at 20% opacity */
+}
+
+/* styles each movie card — the <article> elements are created dynamically via javascript. */
+article {
+  background-color: #ffffff;                          /* changed: was 'background-color: lightgray' */
+  border-radius: 0.625rem;                            /* changed: was 'border-radius: 16px' */
+  margin: 0;                                          /* changed: was 'margin: 8px' */
+  padding: 1.25rem;                                   /* changed: was 'padding: 16px' */
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.12); /* changed: added */
+  flex: 0 0 21.875rem;                                /* changed: was 'width: 384px' */
+}
+
+/* styles the hover effect on movie cards — adds a deeper shadow when the user hovers. */
+article:hover {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2); /* black shadow at 20% opacity on hover */
+}
+
+/* styles all <span> elements — adds spacing between inline items. */
+span {
+  margin-right: 0.375rem; /* changed: was 'margin-right: 4px' */
+}
+
+/* styles the genre badges — applied dynamically via javascript to <span> elements inside a <p>. */
+.genre {
+  background-color: #e8e8e8;         /* changed: was 'background-color: darkgray' */
+  padding: 0.25rem 0.625rem;         /* changed: was 'padding: 4px 8px' */
+  border-radius: 0.75rem;            /* changed: was 'border-radius: 6px' */
+  border: 0.0625rem solid #ccc;      /* changed: was 'border: solid black 1px' */
+  display: inline-block;             /* changed: added */
+  font-size: 0.9em;                  /* changed: added */
+  margin-bottom: 0.25rem;            /* changed: added */
+                                     /* changed: removed 'font-weight: bold' */
+}
+
+/* styles the green Edit button — applied dynamically via javascript to <button> elements. */
+.edit_btn {
+  background-color: #4CAF50; /* green background */
+  padding: 0.375rem 0.75rem;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+/* styles the metadata line (runtime and release date) — applied dynamically via javascript to a <p>. */
+.meta {
+  color: #666; /* medium gray meta text */
+  margin: 0.25rem 0 0.75rem 0;
+  font-size: 0.95em;
+}
+
+/* styles the plot description paragraph — applied dynamically via javascript to a <p>. */
+.plot {
+  margin: 0.75rem 0;
+  line-height: 1.5;
+}
+
+/* styles each word in the plot text — enables the speed-read hover effect. */
+.plot-word {
+  display: inline;
+  border-radius: 0.25rem;
+  padding: 0.0625rem 0.125rem;
+  transition: background-color 0.1s, color 0.1s;
+  cursor: default;
+}
+
+/* highlights the word under the cursor with a violet background for speed reading. */
+.plot-word:hover {
+  background-color: rgba(138, 43, 226, 0.2); /* violet background at 20% opacity */
+  color: #000; /* black text for contrast */
+}
+
+/* styles the subsection headings (directors, writers, actors) — each <h3> is inside an <article>. */
+h3 {
+  font-size: 1.1em;
+  margin: 0.875rem 0 0.25rem 0;
+}
+
+/* styles the <figure> element that wraps the movie poster image. */
+figure {
+  margin: 0;
+}
+
+/* styles the page footer — dark purple background to match the header. */
+footer {
+  background-color: #4a0080;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.9em;
+}
+
+/* styles links inside the footer — lighter purple so they are readable on the dark background. */
+footer a {
+  color: #dda0dd;
+}
+
+/* transferred from exercise-2 */

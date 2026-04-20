@@ -1,3 +1,4 @@
+<!-- template -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,8 +8,30 @@
     <link rel="stylesheet" href="index.css" />
     <script type="module" src="index.js"></script>
   </head>
+<!-- template -->
 
   <body>
-    <!-- Task 1.1. Add the semantic structure -->
+    <!-- START - Task 1.1. Add the semantic structure -->
+    <header>
+      <h1>A random assortment of movies!</h1>
+    </header>
+    <nav>
+      <ul>
+        <!-- Genre buttons are added dynamically via index.js -->
+      </ul>
+    </nav>
+    <main>
+      <!-- Movie cards are added dynamically via index.js -->
+      <!-- clamp(min, preferred, max) — font scales with viewport width (8vw), but never below 1.5rem on small screens or above 7rem on large screens -->
+      <div id="404Error" style="font-size: clamp(1.5rem, 8vw, 7rem); text-align: center;">Data couldn't be loaded: Status 404 - Not Found</div>
+    </main>
+    <footer>
+      <ul>
+        <li><a href="https://github.com/FH-Campus-Wien-WEB/exercise-3-qwitch13">Web Technologies Exercise 3</a></li>
+        <li><a href="https://github.com/qwitch13/ ">Yarah Riedl</a> </li>
+        <li><a href="https://www.hcw.ac.at">Hochschule Campus Wien</a></li>
+      </ul>
+    </footer>
+    <!-- END - Task 1.1 -->
   </body>
 </html>
